@@ -7,11 +7,14 @@ import (
 	"gitlab.id.vin/vincart/golib/config"
 )
 
-func NewRedisAutoConfig(loader config.Loader) *red.Client {
-	properties := redis.NewProperties(loader)
+func NewRedisAutoConfig(loader config.Loader) (*red.Client, error) {
+	properties, err := redis.NewProperties(loader)
+	if err != nil {
+		return nil, err
+	}
 	client, err := redis.NewClient(properties)
 	if err != nil {
-		panic(fmt.Sprintf("Cannot init redis with error [%s]", err.Error()))
+		return nil, fmt.Errorf("cannot init redis with error [%s]", err.Error())
 	}
-	return client
+	return client, nil
 }

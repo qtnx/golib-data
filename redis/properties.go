@@ -12,10 +12,12 @@ type Properties struct {
 	Password string
 }
 
-func NewProperties(loader config.Loader) *Properties {
+func NewProperties(loader config.Loader) (*Properties, error) {
 	props := Properties{}
-	loader.Bind(&props)
-	return &props
+	if err := loader.Bind(&props); err != nil {
+		return nil, err
+	}
+	return &props, nil
 }
 
 func (p Properties) Prefix() string {
