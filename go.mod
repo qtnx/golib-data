@@ -4,6 +4,6 @@ go 1.14
 
 require (
 	github.com/go-redis/redis/v8 v8.11.1
-	gitlab.id.vin/vincart/golib v0.2.2
+	gitlab.id.vin/vincart/golib v0.2.6
 	go.uber.org/fx v1.13.1
 )
