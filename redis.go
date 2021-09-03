@@ -5,11 +5,11 @@ import (
 	red "github.com/go-redis/redis/v8"
 	"gitlab.id.vin/vincart/golib"
 	"gitlab.id.vin/vincart/golib-data/redis"
-	"gitlab.id.vin/vincart/golib/web/actuator"
+	"gitlab.id.vin/vincart/golib/actuator"
 	"go.uber.org/fx"
 )
 
-func RedisAutoConfig() fx.Option {
+func RedisOpt() fx.Option {
 	return fx.Options(
 		golib.EnablePropsAutoload(new(redis.Properties)),
 		fx.Provide(redis.NewProperties),
