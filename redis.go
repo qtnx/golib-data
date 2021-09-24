@@ -11,8 +11,7 @@ import (
 
 func RedisOpt() fx.Option {
 	return fx.Options(
-		golib.EnablePropsAutoload(new(redis.Properties)),
-		fx.Provide(redis.NewProperties),
+		golib.ProvideProps(redis.NewProperties),
 		fx.Provide(NewRedis),
 	)
 }
