@@ -19,5 +19,5 @@ type Properties struct {
 }
 
 func (p Properties) Prefix() string {
-	return "application.redis"
+	return "app.redis"
 }
