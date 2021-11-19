@@ -18,9 +18,26 @@ go get gitlab.id.vin/vincart/golib-data
 Using `fx.Option` to include dependencies for injection.
 
 ```go
-options := []fx.Option{
-    // When you want to use redis
-    golib.RedisOpt(),
+package main
+
+import (
+    red "github.com/go-redis/redis/v8"
+    "gitlab.id.vin/vincart/golib-data"
+    "go.uber.org/fx"
+)
+
+func funcUseRedis(redisClient *red.Client) {
+    // do something with redis client
+}
+
+func main() {
+    options := []fx.Option{
+        // When you want to register redis
+        golibdata.RedisOpt(),
+
+        // Demo way to using redis
+        fx.Provide(funcUseRedis),
+    }
 }
 ```
 
@@ -35,5 +52,3 @@ app:
       database: 0 # Defines redis database. Default: `0`
       password: "" # Defines redis password
 ```
-
-
