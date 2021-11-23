@@ -1,33 +1,32 @@
-package redis
+package datasource
 
 import (
 	"context"
-	"github.com/go-redis/redis/v8"
+	"database/sql"
 	"gitlab.id.vin/vincart/golib/actuator"
 	"gitlab.id.vin/vincart/golib/web/log"
 )
 
 type HealthChecker struct {
-	client *redis.Client
+	connection *sql.DB
 }
 
-func NewHealthChecker(client *redis.Client) actuator.HealthChecker {
-	return &HealthChecker{client: client}
+func NewHealthChecker(connection *sql.DB) actuator.HealthChecker {
+	return &HealthChecker{connection: connection}
 }
 
 func (h HealthChecker) Component() string {
-	return "redis"
+	return "datasource"
 }
 
 func (h HealthChecker) Check(ctx context.Context) actuator.StatusDetails {
 	statusDetails := actuator.StatusDetails{
 		Status: actuator.StatusUp,
 	}
-	_, err := h.client.Ping(context.Background()).Result()
-	if err != nil {
-		log.Error(ctx, "Redis health check failed, err [%s]", err.Error())
+	if err := h.connection.Ping(); err != nil {
+		log.Error(ctx, "Datasource health check failed, err [%s]", err.Error())
 		statusDetails.Status = actuator.StatusDown
-		statusDetails.Reason = "Redis health check failed"
+		statusDetails.Reason = "Datasource health check failed"
 	}
 	return statusDetails
 }
