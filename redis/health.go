@@ -3,8 +3,8 @@ package redis
 import (
 	"context"
 	"github.com/go-redis/redis/v8"
-	"gitlab.id.vin/vincart/golib/actuator"
-	"gitlab.id.vin/vincart/golib/web/log"
+	"gitlab.com/golibs-starter/golib/actuator"
+	"gitlab.com/golibs-starter/golib/web/log"
 )
 
 type HealthChecker struct {

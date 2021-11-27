@@ -3,9 +3,9 @@ package golibdata
 import (
 	"fmt"
 	red "github.com/go-redis/redis/v8"
-	"gitlab.id.vin/vincart/golib"
-	"gitlab.id.vin/vincart/golib-data/redis"
-	"gitlab.id.vin/vincart/golib/actuator"
+	"gitlab.com/golibs-starter/golib"
+	"gitlab.com/golibs-starter/golib-data/redis"
+	"gitlab.com/golibs-starter/golib/actuator"
 	"go.uber.org/fx"
 )
 

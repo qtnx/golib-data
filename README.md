@@ -6,11 +6,11 @@ Database solutions for Golang project. Includes:
 
 ### Setup instruction
 
-Base setup, see [GoLib Instruction](https://gitlab.id.vin/vincart/golib/-/blob/develop/README.md)
+Base setup, see [GoLib Instruction](https://gitlab.com/golibs-starter/golib/-/blob/develop/README.md)
 
 Both `go get` and `go mod` are supported.
 ```shell
-go get gitlab.id.vin/vincart/golib-data
+go get gitlab.com/golibs-starter/golib-data
 ```
 
 ### Usage
@@ -22,7 +22,7 @@ package main
 
 import (
     red "github.com/go-redis/redis/v8"
-    "gitlab.id.vin/vincart/golib-data"
+    "gitlab.com/golibs-starter/golib-data"
     "go.uber.org/fx"
 )
 

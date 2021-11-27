@@ -3,8 +3,8 @@ package datasource
 import (
 	"context"
 	"database/sql"
-	"gitlab.id.vin/vincart/golib/actuator"
-	"gitlab.id.vin/vincart/golib/web/log"
+	"gitlab.com/golibs-starter/golib/actuator"
+	"gitlab.com/golibs-starter/golib/web/log"
 )
 
 type HealthChecker struct {

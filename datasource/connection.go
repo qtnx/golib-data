@@ -3,7 +3,7 @@ package datasource
 import (
 	"fmt"
 	"github.com/pkg/errors"
-	"gitlab.id.vin/vincart/golib-data/datasource/dialector"
+	"gitlab.com/golibs-starter/golib-data/datasource/dialector"
 	"gorm.io/gorm"
 )
 

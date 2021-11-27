@@ -3,10 +3,10 @@ package golibdata
 import (
 	"database/sql"
 	"github.com/pkg/errors"
-	"gitlab.id.vin/vincart/golib"
-	"gitlab.id.vin/vincart/golib-data/datasource"
-	"gitlab.id.vin/vincart/golib-data/datasource/dialector"
-	"gitlab.id.vin/vincart/golib/actuator"
+	"gitlab.com/golibs-starter/golib"
+	"gitlab.com/golibs-starter/golib-data/datasource"
+	"gitlab.com/golibs-starter/golib-data/datasource/dialector"
+	"gitlab.com/golibs-starter/golib/actuator"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
 )
