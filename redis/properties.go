@@ -12,9 +12,9 @@ func NewProperties(loader config.Loader) (*Properties, error) {
 }
 
 type Properties struct {
-	Host     string `default:"localhost"`
-	Port     int    `default:"6379"`
-	Database int    `default:"0"`
+	Host     string `validate:"required" default:"localhost"`
+	Port     int    `validate:"required" default:"6379"`
+	Database int    `validate:"required" default:"0"`
 	Password string
 }
 
