@@ -6,7 +6,6 @@ import (
 	"gitlab.com/golibs-starter/golib"
 	"gitlab.com/golibs-starter/golib-data/datasource"
 	"gitlab.com/golibs-starter/golib-data/datasource/dialector"
-	"gitlab.com/golibs-starter/golib/actuator"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
 )
@@ -15,6 +14,7 @@ func DatasourceOpt() fx.Option {
 	return fx.Options(
 		fx.Provide(NewDatasource),
 		fx.Provide(newDialResolver),
+		golib.ProvideHealthChecker(datasource.NewHealthChecker),
 		golib.ProvideProps(datasource.NewProperties),
 		ProvideDatasourceDialStrategy(dialector.NewMysql),
 		ProvideDatasourceDialStrategy(dialector.NewPostgres),
@@ -32,7 +32,6 @@ type DatasourceOut struct {
 	fx.Out
 	Connection    *gorm.DB
 	SqlConnection *sql.DB
-	HealthChecker actuator.HealthChecker `group:"actuator_health_checker"`
 }
 
 func NewDatasource(resolver *dialector.Resolver, properties *datasource.Properties) (DatasourceOut, error) {
@@ -47,7 +46,6 @@ func NewDatasource(resolver *dialector.Resolver, properties *datasource.Properti
 	}
 	out.Connection = connection
 	out.SqlConnection = sqlConnection
-	out.HealthChecker = datasource.NewHealthChecker(sqlConnection)
 	return out, nil
 }
 
