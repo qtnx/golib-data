@@ -37,6 +37,8 @@ func (m Mysql) buildDsn(cf *Config) (string, error) {
 	if len(params) > 0 {
 		params = "?" + params
 	}
-	format := "%v:%v@tcp(%v:%v)/%v%v"
-	return fmt.Sprintf(format, cf.Username, cf.Password, cf.Host, cf.Port, cf.Database, params), nil
+	if cf.Password == "" {
+		return fmt.Sprintf("%v@tcp(%v:%v)/%v%v", cf.Username, cf.Host, cf.Port, cf.Database, params), nil
+	}
+	return fmt.Sprintf("%v:%v@tcp(%v:%v)/%v%v", cf.Username, cf.Password, cf.Host, cf.Port, cf.Database, params), nil
 }
