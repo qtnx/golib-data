@@ -15,6 +15,7 @@ type Properties struct {
 	Host     string `validate:"required" default:"localhost"`
 	Port     int    `validate:"required" default:"6379"`
 	Database int    `default:"0"`
+	Username string
 	Password string
 }
 
