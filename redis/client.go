@@ -18,6 +18,7 @@ func NewClient(props *Properties) (*redis.Client, error) {
 	}
 	rdb := redis.NewClient(&redis.Options{
 		Addr:     fmt.Sprintf("%s:%d", props.Host, props.Port),
+		Username: props.Username,
 		Password: props.Password,
 		DB:       props.Database,
 	})

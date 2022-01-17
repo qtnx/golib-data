@@ -25,10 +25,10 @@ package main
 
 import (
 	"database/sql"
-    red "github.com/go-redis/redis/v8"
-    "gitlab.com/golibs-starter/golib-data"
-    "go.uber.org/fx"
-    "gorm.io/gorm"
+	red "github.com/go-redis/redis/v8"
+	"gitlab.com/golibs-starter/golib-data"
+	"go.uber.org/fx"
+	"gorm.io/gorm"
 )
 
 func main() {
@@ -78,5 +78,6 @@ app:
         host: localhost # Define redis host. Default: `localhost`
         port: 6379 # Define redis port. Default: `6379`
         database: 0 # Define redis database. Default: `0`
+        username: "" # Define redis username
         password: "" # Define redis password
 ```
