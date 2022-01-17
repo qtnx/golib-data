@@ -80,4 +80,5 @@ app:
         database: 0 # Define redis database. Default: `0`
         username: "" # Define redis username
         password: "" # Define redis password
+        enableTLS: true # Define enable TLS
 ```

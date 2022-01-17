@@ -12,11 +12,12 @@ func NewProperties(loader config.Loader) (*Properties, error) {
 }
 
 type Properties struct {
-	Host     string `validate:"required" default:"localhost"`
-	Port     int    `validate:"required" default:"6379"`
-	Database int    `default:"0"`
-	Username string
-	Password string
+	Host      string `validate:"required" default:"localhost"`
+	Port      int    `validate:"required" default:"6379"`
+	Database  int    `default:"0"`
+	Username  string
+	Password  string
+	EnableTLS bool
 }
 
 func (p Properties) Prefix() string {
