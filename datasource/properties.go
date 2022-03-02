@@ -29,6 +29,9 @@ type Properties struct {
 
 	// The maximum amount of time a connection may be reused.
 	ConnMaxLifetime time.Duration `default:"30m"`
+
+	// The log level of gorm. There are four levels: "SILENT", "ERROR", "WARN", "INFO".
+	LogLevel string `default:"SILENT"`
 }
 
 func (p Properties) Prefix() string {
