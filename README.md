@@ -27,6 +27,7 @@ import (
     "database/sql"
     red "github.com/go-redis/redis/v8"
     "gitlab.com/golibs-starter/golib-data"
+    "gitlab.com/golibs-starter/golib-data/testutil"
     "go.uber.org/fx"
     "gorm.io/gorm"
 )
@@ -43,6 +44,14 @@ func main() {
         fx.Provide(funcUseRedis),
         fx.Provide(funcUseOrm),
         fx.Provide(funcUseNativeDbConnection),
+
+        // ==================== TEST UTILS =================
+        // A useful util to easy to interact with database in test.
+        golibdataTestUtil.DatabaseTestUtilOpt(),
+
+        // This useful when you want to truncate some tables before test.
+        // Eg: https://gitlab.com/golibs-starter/golib-sample/-/tree/develop/src/public/testing/create_order_controller_test.go
+        golibdataTestUtil.TruncateTablesOpt("table1", "table2"),
     )
 }
 
