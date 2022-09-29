@@ -24,38 +24,47 @@ Using `fx.Option` to include dependencies for injection.
 package main
 
 import (
-	"database/sql"
-	red "github.com/go-redis/redis/v8"
-	"gitlab.com/golibs-starter/golib-data"
-	"go.uber.org/fx"
-	"gorm.io/gorm"
+    "database/sql"
+    red "github.com/go-redis/redis/v8"
+    "gitlab.com/golibs-starter/golib-data"
+    "gitlab.com/golibs-starter/golib-data/testutil"
+    "go.uber.org/fx"
+    "gorm.io/gorm"
 )
 
 func main() {
-	_ = []fx.Option{
-		// When you want to use redis
-		golibdata.RedisOpt(),
+    fx.New(
+        // When you want to use redis
+        golibdata.RedisOpt(),
 
-		// When you want to use datasource
-		golibdata.DatasourceOpt(),
+        // When you want to use datasource
+        golibdata.DatasourceOpt(),
 
-		// Demo way to using redis
-		fx.Provide(funcUseRedis),
-		fx.Provide(funcUseOrm),
-		fx.Provide(funcUseNativeDbConnection),
-	}
+        // Demo way to using redis
+        fx.Provide(funcUseRedis),
+        fx.Provide(funcUseOrm),
+        fx.Provide(funcUseNativeDbConnection),
+
+        // ==================== TEST UTILS =================
+        // A useful util to easy to interact with database in test.
+        golibdataTestUtil.DatabaseTestUtilOpt(),
+
+        // This useful when you want to truncate some tables before test.
+        // Eg: https://gitlab.com/golibs-starter/golib-sample/-/tree/develop/src/public/testing/create_order_controller_test.go
+        golibdataTestUtil.TruncateTablesOpt("table1", "table2"),
+    )
 }
 
 func funcUseRedis(redisClient *red.Client) {
-	// do something with redis client
+    // do something with redis client
 }
 
 func funcUseOrm(db *gorm.DB) {
-	// do something with gorm
+    // do something with gorm
 }
 
 func funcUseNativeDbConnection(db *sql.DB) {
-	// do something with the native database connection
+    // do something with the native database connection
 }
 ```
 
