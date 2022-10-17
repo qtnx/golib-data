@@ -3,13 +3,11 @@ package golibdataTestUtil
 import "go.uber.org/fx"
 
 func DatabaseTestUtilOpt() fx.Option {
-	return fx.Provide(NewDatabaseTestUtil)
+	return fx.Provide(EnableDatabaseTestUtil)
 }
 
 func TruncateTablesOpt(tables ...string) fx.Option {
-	return fx.Invoke(func(util *DatabaseTestUtil) {
-		for _, table := range tables {
-			util.TruncateTable(table)
-		}
+	return fx.Invoke(func() {
+		TruncateTables(tables...)
 	})
 }
