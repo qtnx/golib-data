@@ -60,3 +60,8 @@ func AssertDatabaseHas(t *testing.T, table string, conditions map[string]interfa
 	count := CountWithQuery(table, conditions)
 	require.GreaterOrEqual(t, count, int64(1), "Record not found in database with query:", conditions)
 }
+
+// DB return gorm instance
+func DB() *gorm.DB {
+	return orm
+}
