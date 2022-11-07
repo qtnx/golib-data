@@ -23,7 +23,7 @@ func (h HealthChecker) Check(ctx context.Context) actuator.StatusDetails {
 	statusDetails := actuator.StatusDetails{
 		Status: actuator.StatusUp,
 	}
-	if err := h.connection.Ping(); err != nil {
+	if err := h.connection.PingContext(ctx); err != nil {
 		log.Error(ctx, "Datasource health check failed, err [%s]", err.Error())
 		statusDetails.Status = actuator.StatusDown
 		statusDetails.Reason = "Datasource health check failed"
