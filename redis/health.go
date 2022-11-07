@@ -23,7 +23,7 @@ func (h HealthChecker) Check(ctx context.Context) actuator.StatusDetails {
 	statusDetails := actuator.StatusDetails{
 		Status: actuator.StatusUp,
 	}
-	_, err := h.client.Ping(context.Background()).Result()
+	_, err := h.client.Ping(ctx).Result()
 	if err != nil {
 		log.Error(ctx, "Redis health check failed, err [%s]", err.Error())
 		statusDetails.Status = actuator.StatusDown
