@@ -15,6 +15,7 @@ func DatasourceOpt() fx.Option {
 		fx.Provide(NewDatasource),
 		fx.Provide(newDialResolver),
 		golib.ProvideHealthChecker(datasource.NewHealthChecker),
+		golib.ProvideInformer(datasource.NewInformer),
 		golib.ProvideProps(datasource.NewProperties),
 		ProvideDatasourceDialStrategy(dialector.NewMysql),
 		ProvideDatasourceDialStrategy(dialector.NewPostgres),
