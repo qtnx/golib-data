@@ -42,9 +42,10 @@ func NewConnection(resolver *dialector.Resolver, p *Properties) (*gorm.DB, error
 		return nil, errors.WithMessage(err, "datasource connection is not available")
 	}
 	// Config connection pool
-	sqlDb.SetMaxIdleConns(p.MaxIdleConns)
 	sqlDb.SetMaxOpenConns(p.MaxOpenConns)
 	sqlDb.SetConnMaxLifetime(p.ConnMaxLifetime)
+	sqlDb.SetMaxIdleConns(p.MaxIdleConns)
+	sqlDb.SetConnMaxIdleTime(p.ConnMaxIdleTime)
 	return connection, nil
 }
 
