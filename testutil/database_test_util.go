@@ -31,6 +31,20 @@ func TruncateTables(tables ...string) {
 	}
 }
 
+func truncateTableHasForeignKey(table string) {
+	if err := orm.Exec(fmt.Sprintf("SET FOREIGN_KEY_CHECKS = 0; TRUNCATE TABLE `%s`; SET FOREIGN_KEY_CHECKS = 1;", table)).Error; err != nil {
+		log.Fatalf("Could not truncate table [%s], err [%v]", table, err)
+	} else {
+		log.Infof("Truncated table [%s]", table)
+	}
+}
+
+func TruncateTablesHasForeignKey(tables ...string) {
+	for _, table := range tables {
+		truncateTableHasForeignKey(table)
+	}
+}
+
 func Insert(model interface{}) {
 	if err := orm.Create(model).Error; err != nil {
 		log.Fatalf("Could not create seed data, model: [%+v], err: [%v]", model, err)
