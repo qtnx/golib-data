@@ -6,22 +6,28 @@ import (
 	"gorm.io/gorm"
 )
 
-// EnableDatabaseTestUtil
-// Deprecated use DatabaseTestUtilOpt instead
 func EnableDatabaseTestUtil() fx.Option {
-	return DatabaseTestUtilOpt()
-}
-
-func DatabaseTestUtilOpt() fx.Option {
 	return fx.Invoke(func(db *gorm.DB) {
 		orm = db
 	})
 }
 
-func RedisTestUtilOpt() fx.Option {
+// DatabaseTestUtilOpt
+// Deprecated: use EnableDatabaseTestUtil instead
+func DatabaseTestUtilOpt() fx.Option {
+	return EnableDatabaseTestUtil()
+}
+
+func EnableRedisTestUtilOpt() fx.Option {
 	return fx.Invoke(func(rc *redis.Client) {
 		redisClient = rc
 	})
+}
+
+// RedisTestUtilOpt
+// Deprecated: use EnableRedisTestUtilOpt instead
+func RedisTestUtilOpt() fx.Option {
+	return EnableRedisTestUtilOpt()
 }
 
 func TruncateTablesOpt(tables ...string) fx.Option {
