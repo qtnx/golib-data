@@ -35,3 +35,9 @@ func TruncateTablesOpt(tables ...string) fx.Option {
 		TruncateTables(tables...)
 	})
 }
+
+func TruncateTablesHasForeignKeyOpt(tables ...string) fx.Option {
+	return fx.Invoke(func() {
+		TruncateTablesHasForeignKey(tables...)
+	})
+}
