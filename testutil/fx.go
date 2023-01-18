@@ -6,16 +6,16 @@ import (
 	"gorm.io/gorm"
 )
 
-func EnableDatabaseTestUtil() fx.Option {
+func EnableDatabaseTestUtilOpt() fx.Option {
 	return fx.Invoke(func(db *gorm.DB) {
 		orm = db
 	})
 }
 
 // DatabaseTestUtilOpt
-// Deprecated: use EnableDatabaseTestUtil instead
+// Deprecated: use EnableDatabaseTestUtilOpt instead
 func DatabaseTestUtilOpt() fx.Option {
-	return EnableDatabaseTestUtil()
+	return EnableDatabaseTestUtilOpt()
 }
 
 func EnableRedisTestUtilOpt() fx.Option {

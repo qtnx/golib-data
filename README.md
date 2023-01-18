@@ -47,7 +47,8 @@ func main() {
 
         // ==================== TEST UTILS =================
         // A useful util to easy to interact with database in test.
-        golibdataTestUtil.DatabaseTestUtilOpt(),
+        golibdataTestUtil.EnableDatabaseTestUtilOpt(),
+        golibdataTestUtil.EnableRedisTestUtilOpt(),
 
         // This useful when you want to truncate some tables before test.
         // Eg: https://gitlab.com/golibs-starter/golib-sample/-/tree/develop/src/public/testing/create_order_controller_test.go
@@ -74,20 +75,83 @@ func funcUseNativeDbConnection(db *sql.DB) {
 app:
     # Configuration available for golib.DatasourceOpt()
     datasource:
-        driver: mysql # Support mysql, postgres
-        host: localhost # Define the database host
-        port: 3306 # Define the database port
-        database: sample # Define the database name
-        username: root # Define the username for authentication
-        password: secret # Define the password for authentication
-        params: parseTime=true # Extra params to add to the connection string
+        # SQL driver. Supports: mysql, postgres
+        driver: mysql
+
+        # Define the database host
+        host: localhost
+
+        # Define the database port
+        port: 3306
+
+        # Define the database name
+        database: sample
+
+        # Define the username for authentication
+        username: root
+
+        # Define the password for authentication
+        password: secret
+
+        # Extra params to add to the connection string
+        params: parseTime=true
+
+        # The maximum number of open connections to the database.
+        # Default 10 connections
+        maxOpenConns: 10
+
+        # The maximum amount of time a connection may be reused.
+        # Default 30m
+        connMaxLifetime: 30m
+
+        # The maximum number of connections in the idle connection pool.
+        # Default 2
+        maxIdleConns: 2
+
+        # The maximum amount of time a connection may be idle.
+        # Default 10m
+        connMaxIdleTime: 10m
+
+        # The query log level.
+        # There are four levels: "SILENT", "ERROR", "WARN", "INFO".
+        # Default SILENT
+        logLevel: SILENT
 
     # Configuration available for golib.RedisOpt()
     redis:
-        host: localhost # Define redis host. Default: `localhost`
-        port: 6379 # Define redis port. Default: `6379`
-        database: 0 # Define redis database. Default: `0`
-        username: "" # Define redis username
-        password: "" # Define redis password
-        enableTLS: true # Define enable TLS
+        # Define the redis host. Default: `localhost`
+        host: localhost
+
+        # Define the redis port. Default: `6379`
+        port: 6379
+
+        # Define the redis database. Default: `0`
+        database: 0
+
+        # Define the redis username
+        username: ""
+
+        # Define the redis password
+        password: ""
+
+        # Enable or disable TLS
+        enableTLS: true
+
+        # Maximum number of socket connections.
+        # Default 10 connections
+        poolSize: 10
+
+        # Connection age at which client retires (closes) the connection.
+        # Default is Zero means not close aged connections.
+        maxConnAge: 0
+
+        # Minimum number of idle connections which is useful when establishing
+        # new connection is slow.
+        # Default 2 idle connections
+        minIdleConns: 2
+
+        # Amount of time after which client closes idle connections.
+        # Should be less than server's timeout.
+        # Default is 5 minutes. -1 disables idle timeout check.
+        idleTimeout: 5m
 ```
