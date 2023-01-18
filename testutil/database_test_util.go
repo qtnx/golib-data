@@ -4,18 +4,11 @@ import (
 	"fmt"
 	"github.com/stretchr/testify/require"
 	"gitlab.com/golibs-starter/golib/log"
-	"go.uber.org/fx"
 	"gorm.io/gorm"
 	"testing"
 )
 
 var orm *gorm.DB
-
-func EnableDatabaseTestUtil() fx.Option {
-	return fx.Invoke(func(db *gorm.DB) {
-		orm = db
-	})
-}
 
 func truncateTable(table string) {
 	if err := orm.Exec(fmt.Sprintf("TRUNCATE TABLE `%s`", table)).Error; err != nil {

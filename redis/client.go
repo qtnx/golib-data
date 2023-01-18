@@ -18,10 +18,14 @@ func NewClient(props *Properties) (*redis.Client, error) {
 		return nil, errors.New("redis port is required")
 	}
 	config := &redis.Options{
-		Addr:     fmt.Sprintf("%s:%d", props.Host, props.Port),
-		Username: props.Username,
-		Password: props.Password,
-		DB:       props.Database,
+		Addr:         fmt.Sprintf("%s:%d", props.Host, props.Port),
+		Username:     props.Username,
+		Password:     props.Password,
+		DB:           props.Database,
+		PoolSize:     props.PoolSize,
+		MaxConnAge:   props.MaxConnAge,
+		MinIdleConns: props.MinIdleConns,
+		IdleTimeout:  props.IdleTimeout,
 	}
 	if props.EnableTLS {
 		config.TLSConfig = &tls.Config{
