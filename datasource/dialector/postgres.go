@@ -27,6 +27,9 @@ func (p Postgres) Open(cf *Config) (gorm.Dialector, error) {
 }
 
 func (p Postgres) buildDsn(cf *Config) (string, error) {
+	if len(cf.Dsn) > 0 {
+		return cf.Dsn, nil
+	}
 	if len(cf.Host) == 0 {
 		return "", errors.New("host is required")
 	}

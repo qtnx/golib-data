@@ -10,15 +10,33 @@ import (
 	"gorm.io/gorm"
 )
 
+// DatasourceOpt provide option to bootstrap datasource with all available strategies.
 func DatasourceOpt() fx.Option {
+	return fx.Options(
+		DatasourceCommonOpt(),
+		ProvideDatasourceDialStrategy(dialector.NewMysql),
+		ProvideDatasourceDialStrategy(dialector.NewPostgres),
+		ProvideDatasourceDialStrategy(dialector.NewSqlite),
+	)
+}
+
+// StrategicDatasourceOpt provide option to bootstrap datasource with specified strategies.
+func StrategicDatasourceOpt(strategyConstructors ...interface{}) fx.Option {
+	opts := make([]fx.Option, 0)
+	opts = append(opts, DatasourceCommonOpt())
+	for _, strategyConstructor := range strategyConstructors {
+		opts = append(opts, ProvideDatasourceDialStrategy(strategyConstructor))
+	}
+	return fx.Options(opts...)
+}
+
+func DatasourceCommonOpt() fx.Option {
 	return fx.Options(
 		fx.Provide(NewDatasource),
 		fx.Provide(newDialResolver),
 		golib.ProvideHealthChecker(datasource.NewHealthChecker),
 		golib.ProvideInformer(datasource.NewInformer),
 		golib.ProvideProps(datasource.NewProperties),
-		ProvideDatasourceDialStrategy(dialector.NewMysql),
-		ProvideDatasourceDialStrategy(dialector.NewPostgres),
 	)
 }
 
