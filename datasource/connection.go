@@ -17,6 +17,7 @@ func NewConnection(resolver *dialector.Resolver, p *Properties) (*gorm.DB, error
 		return nil, errors.WithMessage(err, fmt.Sprintf("cannot resolve driver [%s]", p.Driver))
 	}
 	dial, err := dialStrategy.Open(&dialector.Config{
+		Dsn:      p.Dsn,
 		Host:     p.Host,
 		Port:     p.Port,
 		Database: p.Database,

@@ -14,10 +14,11 @@ func NewProperties(loader config.Loader) (*Properties, error) {
 
 type Properties struct {
 	Driver   string `validate:"required"`
-	Host     string `validate:"required" default:"localhost"`
-	Port     int    `validate:"required" default:"3306"`
-	Database string `validate:"required"`
-	Username string `validate:"required"`
+	Dsn      string `validate:"required_without_all=Host Port Database Username"`
+	Host     string `validate:"required_without=Dsn"`
+	Port     int    `validate:"required_without=Dsn"`
+	Database string `validate:"required_without=Dsn"`
+	Username string `validate:"required_without=Dsn"`
 	Password string
 	Params   string
 
