@@ -27,6 +27,9 @@ func (m Mysql) Open(cf *Config) (gorm.Dialector, error) {
 }
 
 func (m Mysql) buildDsn(cf *Config) (string, error) {
+	if len(cf.Dsn) > 0 {
+		return cf.Dsn, nil
+	}
 	if len(cf.Host) == 0 {
 		return "", errors.New("host is required")
 	}
