@@ -4,11 +4,12 @@ Database solutions for Golang project. Includes:
 
 * MySQL database
 * Postgres database
+* Sqlite database
 * Redis database
 
 ### Setup instruction
 
-Base setup, see [GoLib Instruction](https://gitlab.com/golibs-starter/golib/-/blob/develop/README.md)
+Base setup, see [GoLib Instruction](https://gitlab.com/golibs-starter/golib/-/blob/main/README.md)
 
 Both `go get` and `go mod` are supported.
 
@@ -75,7 +76,7 @@ func funcUseNativeDbConnection(db *sql.DB) {
 app:
     # Configuration available for golib.DatasourceOpt()
     datasource:
-        # SQL driver. Supports: mysql, postgres
+        # SQL driver. Supports: mysql, postgres, sqlite
         driver: mysql
 
         # Define the database host
@@ -95,6 +96,9 @@ app:
 
         # Extra params to add to the connection string
         params: parseTime=true
+
+        # When dsn is provided, it will override all above connection configs
+        dsn: user1@tcp(127.0.0.1:3306)/demo
 
         # The maximum number of open connections to the database.
         # Default 10 connections
