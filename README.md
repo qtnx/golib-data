@@ -28,6 +28,7 @@ import (
     "database/sql"
     "github.com/redis/go-redis/v9"
     "gitlab.com/golibs-starter/golib-data"
+    "gitlab.com/golibs-starter/golib-data/datasource/dialector"
     "gitlab.com/golibs-starter/golib-data/testutil"
     "go.uber.org/fx"
     "gorm.io/gorm"
@@ -39,7 +40,12 @@ func main() {
         golibdata.RedisOpt(),
 
         // When you want to use datasource
+        // DatasourceOpt will bootstrap datasource
+        // with all available strategies (mysql, postgres, sqlite).
         golibdata.DatasourceOpt(),
+        // If you not want to bootstrap all strategies,
+        // you can specify which strategies will be bootstrapped
+        golibdata.StrategicDatasourceOpt(dialector.NewMysql, dialector.NewPostgres),
 
         // Demo way to using redis
         fx.Provide(funcUseRedis),
@@ -68,6 +74,7 @@ func funcUseOrm(db *gorm.DB) {
 func funcUseNativeDbConnection(db *sql.DB) {
     // do something with the native database connection
 }
+
 ```
 
 ### Configuration
