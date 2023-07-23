@@ -4,7 +4,7 @@ import (
 	"context"
 	"github.com/go-redis/redis/v8"
 	"gitlab.com/golibs-starter/golib/actuator"
-	"gitlab.com/golibs-starter/golib/web/log"
+	"gitlab.com/golibs-starter/golib/log"
 )
 
 type HealthChecker struct {
@@ -25,7 +25,7 @@ func (h HealthChecker) Check(ctx context.Context) actuator.StatusDetails {
 	}
 	_, err := h.client.Ping(ctx).Result()
 	if err != nil {
-		log.Error(ctx, "Redis health check failed, err [%s]", err.Error())
+		log.WithCtx(ctx).WithError(err).Error("Redis health check failed")
 		statusDetails.Status = actuator.StatusDown
 		statusDetails.Reason = "Redis health check failed"
 	}

@@ -11,6 +11,7 @@ import (
 )
 
 // DatasourceOpt provide option to bootstrap datasource with all available strategies.
+// If you want to specify which database is bootstrapped, use StrategicDatasourceOpt instead.
 func DatasourceOpt() fx.Option {
 	return fx.Options(
 		DatasourceCommonOpt(),
@@ -21,6 +22,9 @@ func DatasourceOpt() fx.Option {
 }
 
 // StrategicDatasourceOpt provide option to bootstrap datasource with specified strategies.
+// Eg:
+// - When you want to bootstrap Mysql only: StrategicDatasourceOpt(dialector.NewMysql)
+// - Or both mysql and postgres: StrategicDatasourceOpt(dialector.NewMysql, dialector.NewPostgres)
 func StrategicDatasourceOpt(strategyConstructors ...interface{}) fx.Option {
 	opts := make([]fx.Option, 0)
 	opts = append(opts, DatasourceCommonOpt())
