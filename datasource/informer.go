@@ -2,7 +2,7 @@ package datasource
 
 import (
 	"database/sql"
-	"gitlab.com/golibs-starter/golib/actuator"
+	"github.com/golibs-starter/golib/actuator"
 )
 
 type Informer struct {

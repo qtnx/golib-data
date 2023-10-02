@@ -2,8 +2,8 @@ package golibdataTestUtil
 
 import (
 	"fmt"
+	"github.com/golibs-starter/golib/log"
 	"github.com/stretchr/testify/require"
-	"gitlab.com/golibs-starter/golib/log"
 	"gorm.io/gorm"
 	"testing"
 )

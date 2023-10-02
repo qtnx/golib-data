@@ -2,8 +2,8 @@ package datasource
 
 import (
 	"fmt"
+	"github.com/golibs-starter/golib-data/datasource/dialector"
 	"github.com/pkg/errors"
-	"gitlab.com/golibs-starter/golib-data/datasource/dialector"
 	"gorm.io/gorm"
 	"gorm.io/gorm/logger"
 )

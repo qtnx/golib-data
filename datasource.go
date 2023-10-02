@@ -2,10 +2,10 @@ package golibdata
 
 import (
 	"database/sql"
+	"github.com/golibs-starter/golib"
+	"github.com/golibs-starter/golib-data/datasource"
+	"github.com/golibs-starter/golib-data/datasource/dialector"
 	"github.com/pkg/errors"
-	"gitlab.com/golibs-starter/golib"
-	"gitlab.com/golibs-starter/golib-data/datasource"
-	"gitlab.com/golibs-starter/golib-data/datasource/dialector"
 	"go.uber.org/fx"
 	"gorm.io/gorm"
 )

@@ -2,9 +2,9 @@ package redis
 
 import (
 	"context"
+	"github.com/golibs-starter/golib/actuator"
+	"github.com/golibs-starter/golib/log"
 	"github.com/redis/go-redis/v9"
-	"gitlab.com/golibs-starter/golib/actuator"
-	"gitlab.com/golibs-starter/golib/log"
 )
 
 type HealthChecker struct {

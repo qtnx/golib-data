@@ -1,8 +1,8 @@
 package redis
 
 import (
+	"github.com/golibs-starter/golib/actuator"
 	"github.com/redis/go-redis/v9"
-	"gitlab.com/golibs-starter/golib/actuator"
 )
 
 type Informer struct {
