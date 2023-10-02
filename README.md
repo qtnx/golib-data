@@ -12,7 +12,7 @@ Database solutions for Golang project. Includes:
 
 ### Setup instruction
 
-Base setup, see [GoLib Instruction](https://github.com/golibs-starter/golib/-/blob/main/README.md)
+Base setup, see [GoLib Instruction](https://github.com/golibs-starter/golib#readme)
 
 Both `go get` and `go mod` are supported.
 
