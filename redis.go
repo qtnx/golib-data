@@ -1,8 +1,8 @@
 package golibdata
 
 import (
-	"gitlab.com/golibs-starter/golib"
-	"gitlab.com/golibs-starter/golib-data/redis"
+	"github.com/golibs-starter/golib"
+	"github.com/golibs-starter/golib-data/redis"
 	"go.uber.org/fx"
 )
 

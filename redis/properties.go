@@ -1,8 +1,8 @@
 package redis
 
 import (
-	_ "gitlab.com/golibs-starter/golib"
-	"gitlab.com/golibs-starter/golib/config"
+	_ "github.com/golibs-starter/golib"
+	"github.com/golibs-starter/golib/config"
 	"time"
 )
 

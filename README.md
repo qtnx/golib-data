@@ -1,5 +1,8 @@
 # Golib Data
 
+> **Note**
+> We are moving out from [Gitlab](https://gitlab.com/golibs-starter). All packages are now migrated to `github.com/golibs-starter/*`. Please consider updating.
+
 Database solutions for Golang project. Includes:
 
 * MySQL database
@@ -9,12 +12,12 @@ Database solutions for Golang project. Includes:
 
 ### Setup instruction
 
-Base setup, see [GoLib Instruction](https://gitlab.com/golibs-starter/golib/-/blob/main/README.md)
+Base setup, see [GoLib Instruction](https://github.com/golibs-starter/golib/-/blob/main/README.md)
 
 Both `go get` and `go mod` are supported.
 
 ```shell
-go get gitlab.com/golibs-starter/golib-data
+go get github.com/golibs-starter/golib-data
 ```
 
 ### Usage
@@ -26,10 +29,10 @@ package main
 
 import (
     "database/sql"
+    "github.com/golibs-starter/golib-data"
+    "github.com/golibs-starter/golib-data/datasource/dialector"
+    "github.com/golibs-starter/golib-data/testutil"
     "github.com/redis/go-redis/v9"
-    "gitlab.com/golibs-starter/golib-data"
-    "gitlab.com/golibs-starter/golib-data/datasource/dialector"
-    "gitlab.com/golibs-starter/golib-data/testutil"
     "go.uber.org/fx"
     "gorm.io/gorm"
 )
@@ -58,7 +61,7 @@ func main() {
         golibdataTestUtil.EnableRedisTestUtilOpt(),
 
         // This useful when you want to truncate some tables before test.
-        // Eg: https://gitlab.com/golibs-starter/golib-sample/-/tree/develop/src/public/testing/create_order_controller_test.go
+        // Eg: https://github.com/golibs-starter/golib-sample/-/tree/develop/src/public/testing/create_order_controller_test.go
         golibdataTestUtil.TruncateTablesOpt("table1", "table2"),
     )
 }

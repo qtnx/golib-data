@@ -3,8 +3,8 @@ package datasource
 import (
 	"context"
 	"database/sql"
-	"gitlab.com/golibs-starter/golib/actuator"
-	"gitlab.com/golibs-starter/golib/log"
+	"github.com/golibs-starter/golib/actuator"
+	"github.com/golibs-starter/golib/log"
 )
 
 type HealthChecker struct {
